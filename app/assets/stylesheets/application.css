@@ -15,3 +15,6 @@
  *= require foundation_and_overrides
 
  */
+.alert-box:first-child {
+  margin-top: 1.25rem;
+}
