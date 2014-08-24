@@ -40,3 +40,4 @@ gem 'spring',        group: :development
 
 gem 'haml-rails'
 gem 'foundation-rails'
+gem 'devise'
