@@ -1,0 +1,13 @@
+%h1 To-Dos
+
+- @todos.each do |todo|
+  = form_for todo, as: "todo_#{todo.id}", html: { class: 'edit_todo_from_index' } do |f|
+    = f.check_box :completed
+    = f.label :completed, todo.name
+    - if can? :destroy, todo
+      = link_to 'Edit', edit_todo_path(todo)
+      = link_to 'Destroy', todo, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Todo', new_todo_path
