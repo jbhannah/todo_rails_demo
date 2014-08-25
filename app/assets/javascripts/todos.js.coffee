@@ -14,9 +14,14 @@ $ ->
     $("#flash").append '<div data-alert class="alert-box alert">' + xhr.responseText + '<a href="#" class="close">&times;</a></div>'
     $("input[type=checkbox]", this).removeProp("disabled")
 
+  $(document).on "submit", "#new_todo", ->
+    $("button", this).prop("disabled", true)
+
   $(document).on("ajax:success", "#new_todo", (e, data, status, xhr) ->
     $("#flash").append '<div data-alert class="alert-box success">To-do created successfully.<a href="#" class="close">&times;</a></div>'
     $("#todos").append xhr.responseText
     this.reset()
+    $("button", this).removeProp("disabled")
   ).on "ajax:error", "#new_todo", (e, xhr, status, error) ->
     $("#flash").append '<div data-alert class="alert-box alert">To-do could not be created.<a href="#" class="close">&times;</a></div>'
+    $("button", this).removeProp("disabled")
