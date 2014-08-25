@@ -9,6 +9,6 @@
 = form_for Todo.new, remote: true do |f|
   .field
     = f.label :name
-    = f.text_field :name
+    = f.text_field :name, required: true
   .actions
     = f.submit 'Save'
