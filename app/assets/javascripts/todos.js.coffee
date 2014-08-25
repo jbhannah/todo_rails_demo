@@ -4,24 +4,24 @@ $ ->
     $(this).prop("disabled", true)
 
   $(document).on("ajax:success", ".edit_todo_from_index", (e, data, status, xhr) ->
-    $("#flash").append '<div data-alert class="alert-box ' + data.status + '">' + data.message + '<a href="#" class="close">&times;</a></div>'
+    $("#flash").append('<div data-alert class="alert-box ' + data.status + '"><div>' + data.message + '</div><a href="#" class="close">&times;</a></div>').foundation("alert", undefined)
     if data.todo.completed
       $("#edit_todo_" + data.todo.id.toString()).addClass('completed').fadeOut "slow", ->
         $(this).remove()
     else
       $("input[type=checkbox]", this).removeProp("disabled")
   ).on "ajax:error", ".edit_todo_from_index", (e, xhr, status, error) ->
-    $("#flash").append '<div data-alert class="alert-box alert">' + xhr.responseText + '<a href="#" class="close">&times;</a></div>'
+    $("#flash").append('<div data-alert class="alert-box alert"><div>' + xhr.responseText + '</div><a href="#" class="close">&times;</a></div>').foundation("alert", undefined)
     $("input[type=checkbox]", this).removeProp("disabled")
 
   $(document).on "submit", "#new_todo", ->
     $("button", this).prop("disabled", true)
 
   $(document).on("ajax:success", "#new_todo", (e, data, status, xhr) ->
-    $("#flash").append '<div data-alert class="alert-box success">To-do created successfully.<a href="#" class="close">&times;</a></div>'
+    $("#flash").append('<div data-alert class="alert-box success"><div>To-do created successfully.</div><a href="#" class="close">&times;</a></div>').foundation("alert", undefined)
     $("#todos").append xhr.responseText
     this.reset()
     $("button", this).removeProp("disabled")
   ).on "ajax:error", "#new_todo", (e, xhr, status, error) ->
-    $("#flash").append '<div data-alert class="alert-box alert">To-do could not be created.<a href="#" class="close">&times;</a></div>'
+    $("#flash").append('<div data-alert class="alert-box alert"><div>To-do could not be created.</div><a href="#" class="close">&times;</a></div>').foundation("alert", undefined)
     $("button", this).removeProp("disabled")
