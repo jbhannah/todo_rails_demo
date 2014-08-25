@@ -6,10 +6,6 @@ class TodosController < ApplicationController
   def index
   end
 
-  # GET /todos/new
-  def new
-  end
-
   # GET /todos/1/edit
   def edit
   end
@@ -17,13 +13,27 @@ class TodosController < ApplicationController
   # POST /todos
   # POST /todos.json
   def create
+    params[:todo] = params["todo_" + params[:id].to_s]
     @todo.user = current_user
+
     if @todo.save
-      flash[:notice] = "Todo created successfully."
-      redirect_to action: :index
+      @status  = "success"
+      @message = "Todo created successfully."
+      unless request.xhr?
+        flash[:notice] = @message
+        redirect_to action: :index
+      else
+        render @todo
+      end
     else
-      flash[:alert] = "Todo could not be created."
-      redirect_to :back, alert: "Todo could not be created."
+      @status  = "alert"
+      @message = "Todo could not be created."
+      unless request.xhr?
+        flash[:alert] = @message
+        redirect_to :back
+      else
+        render @todo
+      end
     end
   end
 
