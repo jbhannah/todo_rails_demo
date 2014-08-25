@@ -1,7 +1,7 @@
 $ ->
   # Submit when a to-do's checkbox is checked
   $(document).on "change", ".edit_todo_from_index input[type=checkbox]", ->
-    $(this).parent(".edit_todo_from_index").submit()
+    $(this).parents(".edit_todo_from_index").submit()
     $(this).prop("disabled", true)
 
   # Remove to-dos marked as completed via AJAX

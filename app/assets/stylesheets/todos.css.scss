@@ -1,4 +1,10 @@
-.edit_todo_from_index.completed label {
-  color: gray;
-  text-decoration: line-through;
+.edit_todo_from_index {
+  input[type=checkbox] {
+    margin: 0 0.5rem 1rem;
+  }
+
+  &.completed label {
+    color: gray;
+    text-decoration: line-through;
+  }
 }
