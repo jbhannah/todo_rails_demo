@@ -18,7 +18,7 @@ class TodosController < ApplicationController
 
     if @todo.save
       @status  = "success"
-      @message = "Todo created successfully."
+      @message = "To-do created successfully."
       unless request.xhr?
         flash[:notice] = @message
         redirect_to action: :index
@@ -27,7 +27,7 @@ class TodosController < ApplicationController
       end
     else
       @status  = "alert"
-      @message = "Todo could not be created."
+      @message = "To-do could not be created."
       unless request.xhr?
         flash[:alert] = @message
         redirect_to :back
@@ -44,14 +44,14 @@ class TodosController < ApplicationController
 
     if @todo.update(update_params)
       @status  = "success"
-      @message = "Todo updated successfully."
+      @message = "To-do updated successfully."
       unless request.xhr?
         flash[:notice] = @message
         redirect_to action: :index
       end
     else
       @status  = "alert"
-      @message = "Todo could not be updated."
+      @message = "To-do could not be updated."
       unless request.xhr?
         flash[:alert] = @message
         redirect_to :back
@@ -63,10 +63,10 @@ class TodosController < ApplicationController
   # DELETE /todos/1.json
   def destroy
     if @todo.destroy
-      flash[:notice] = "Todo destroyed successfully."
+      flash[:notice] = "To-do destroyed successfully."
       redirect_to action: :index
     else
-      flash[:alert] = "Todo could not be destroyed."
+      flash[:alert] = "To-do could not be destroyed."
       redirect_to :back
     end
   end
