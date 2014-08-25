@@ -1,7 +1,7 @@
 %h1 To-Dos
 
 - @todos.each do |todo|
-  = form_for todo, as: "todo_#{todo.id}", html: { class: 'edit_todo_from_index' } do |f|
+  = form_for todo, as: "todo_#{todo.id}", remote: true, html: { class: 'edit_todo_from_index' } do |f|
     = f.check_box :completed
     = f.label :completed, todo.name
     - if can? :destroy, todo

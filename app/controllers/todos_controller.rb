@@ -6,11 +6,6 @@ class TodosController < ApplicationController
   def index
   end
 
-  # GET /todos/1
-  # GET /todos/1.json
-  def show
-  end
-
   # GET /todos/new
   def new
   end
@@ -35,12 +30,22 @@ class TodosController < ApplicationController
   # PATCH/PUT /todos/1
   # PATCH/PUT /todos/1.json
   def update
-    if @todo.save
-      flash[:notice] = "Todo updated successfully."
-      redirect_to action: :index
+    params[:todo] = params["todo_" + params[:id].to_s]
+
+    if @todo.update(update_params)
+      @status  = "success"
+      @message = "Todo updated successfully."
+      unless request.xhr?
+        flash[:notice] = @message
+        redirect_to action: :index
+      end
     else
-      flash[:alert] = "Todo could not be updated."
-      redirect_to :back
+      @status  = "alert"
+      @message = "Todo could not be updated."
+      unless request.xhr?
+        flash[:alert] = @message
+        redirect_to :back
+      end
     end
   end
 
