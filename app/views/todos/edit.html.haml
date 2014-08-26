@@ -1,7 +1,14 @@
-%h1 Editing todo
+= form_for @todo, html: { class: "large-6 large-centered columns" } do |f|
+  %fieldset
+    %legend Editing todo
 
-= render 'form'
+    - if @todo.errors.any?
+      #error_explanation
+        %h2= "#{pluralize(@todo.errors.count, "error")} prohibited this todo from being saved:"
+        %ul
+          - @todo.errors.full_messages.each do |msg|
+            %li= msg
 
-= link_to 'Show', @todo
-\|
-= link_to 'Back', todos_path
+    = f.text_field :name
+    = f.submit 'Save'
+    %div= link_to 'Back', todos_path
