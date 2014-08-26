@@ -1,12 +1,12 @@
-%h1 To-Dos
+#todos.large-6.medium-9.small-12.medium-centered.columns
+  %h1 To-Dos
 
-#todos
   - @todos.each do |todo|
     = render todo
 
 %br
 
-.large-6.medium-9.small-12.columns
+.large-6.medium-9.small-12.medium-centered.columns
   = form_for Todo.new, remote: true do |f|
     %fieldset
       %legend New To-Do
