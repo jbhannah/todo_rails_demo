@@ -40,7 +40,7 @@ class TodosController < ApplicationController
   # PATCH/PUT /todos/1
   # PATCH/PUT /todos/1.json
   def update
-    params[:todo] = params["todo_" + params[:id].to_s]
+    params[:todo] ||= params["todo_" + params[:id].to_s]
 
     if @todo.update(update_params)
       @status  = "success"
