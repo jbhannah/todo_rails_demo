@@ -7,7 +7,7 @@ $ ->
   # Remove to-dos marked as completed via AJAX
   $(document).on("ajax:success", ".edit_todo_from_index", (e, data, status, xhr) ->
     $("#flash").append('<div data-alert class="alert-box ' + data.status + '"><div>' + data.message + '</div><a href="#" class="close">&times;</a></div>').foundation("alert", undefined)
-    if data.todo.completed
+    if data.todo.completed and not data.admin
       $("#edit_todo_" + data.todo.id.toString()).addClass('completed').fadeOut "slow", ->
         $(this).remove()
     else
