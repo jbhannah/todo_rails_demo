@@ -1,6 +1,20 @@
 .edit_todo_from_index {
+  position: relative;
+  padding: 5px;
+
+  &:nth-of-type(even) {
+    background-color: #eee;
+  }
+
   &.completed label {
     color: gray;
     text-decoration: line-through;
+  }
+
+  .links {
+    font-size: 0.75rem;
+    position: absolute;
+    top: 2px;
+    right: 5px;
   }
 }
